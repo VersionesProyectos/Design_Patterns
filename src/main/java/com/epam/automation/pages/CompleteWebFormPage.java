@@ -43,8 +43,8 @@ public class CompleteWebFormPage extends BasePage {
     @FindBy(css = ".alert.alert-success")
     private WebElement alertSuccess;
 
-    public CompleteWebFormPage(WebDriver driver) {
-        super(driver);
+    public CompleteWebFormPage() {
+        super();
     }
 
     public void clickLinkForm() {
@@ -82,21 +82,16 @@ public class CompleteWebFormPage extends BasePage {
 
 
     public void fillForm(User user) {
-        logger.info("Iniciando el llenado del formulario para el usuario: " + user.getFirstName() + " " + user.getLastName());
 
         enterFirstName(user.getFirstName());
         enterLastName(user.getLastName());
         enterJobTitle(user.getJobTitle());
 
-        logger.info("Seleccionando opciones de educación, género y experiencia.");
         selectEducationLevel();
         selectGender();
         selectExperience();
 
-        logger.info("Ingresando fecha de registro: " + user.getDate());
         enterDate(user.getDate());
-
-        logger.info("Formulario completado en la interfaz de usuario.");
     }
 
     public void clickSubmit() {

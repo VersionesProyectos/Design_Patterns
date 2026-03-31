@@ -1,5 +1,6 @@
 package com.epam.automation.base;
 
+import com.epam.automation.driver.DriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
@@ -18,11 +19,9 @@ public abstract class BasePage {
 
     private static final Logger logger = LogManager.getLogger(BasePage.class);
 
-    public BasePage(WebDriver driver) {
-        if (driver == null) {
-            throw new IllegalArgumentException("WebDriver must not be null");
-        }
-        this.driver = driver;
+    public BasePage() {
+
+        this.driver = DriverManager.getInstance().getDriver(System.getProperty("browser", "chrome"));
 
         int timeout = Integer.parseInt(System.getProperty("timeout", "10"));
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
@@ -46,7 +45,6 @@ public abstract class BasePage {
     }
 
     protected void click(WebElement element) {
-        logger.debug("Esperando que el elemento sea clickable para hacer click.");
         wait.until(ExpectedConditions.elementToBeClickable(element));
 
         highlightElement(element);
@@ -54,9 +52,7 @@ public abstract class BasePage {
     }
 
     protected void sendText(WebElement element, String text) {
-        logger.debug("Esperando visibilidad del elemento para enviar texto: " + text);
         waitForElementToBeVisible(element);
-
         highlightElement(element);
 
         element.clear();
@@ -64,7 +60,6 @@ public abstract class BasePage {
     }
 
     protected void scrollToElement(WebElement element) {
-        logger.debug("Haciendo scroll hasta el elemento.");
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", element);
 
@@ -72,7 +67,6 @@ public abstract class BasePage {
     }
 
     protected void refreshPageElements() {
-        logger.debug("Refrescando referencias de PageFactory para " + this.getClass().getSimpleName());
         PageFactory.initElements(driver, this);
     }
 

@@ -15,7 +15,7 @@ public class AutocompletePage extends BasePage {
     private WebElement autocompleteLink;
 
     @FindBy(id = "autocomplete")
-    private WebElement addressField; // Corregido: addressField
+    private WebElement addressField;
 
     @FindBy(id = "street_number")
     private WebElement streetAddressField;
@@ -35,20 +35,17 @@ public class AutocompletePage extends BasePage {
     @FindBy(id = "country")
     private WebElement countryField;
 
-    public AutocompletePage(WebDriver driver) {
-        super(driver);
+    public AutocompletePage() {
+        super();
     }
 
     public void clickAutocompleteLink() {
-        logger.info("Navegando a la sección de Autocomplete");
         click(autocompleteLink);
         waitForElementToBeVisible(addressField);
     }
 
     public void fillAddressDetails(Address address) {
         refreshPageElements();
-
-        logger.info("Iniciando el proceso de autocompletado para: " + address.getFullAddress());
 
         enterAddress(address.getFullAddress());
 
@@ -59,42 +56,34 @@ public class AutocompletePage extends BasePage {
         enterPostalCode(address.getZipCode());
         enterCountry(address.getCountry());
 
-        logger.info("Todos los campos de dirección han sido completados.");
     }
 
     public void enterAddress(String address) {
-        logger.debug("Ingresando dirección principal: " + address);
         scrollToElement(addressField);
         sendText(addressField, address);
     }
 
     public void enterStreetAddress(String streetAddress) {
-        logger.debug("Ingresando número de calle: " + streetAddress);
         sendText(streetAddressField, streetAddress);
     }
 
     public void enterStreetAddressDos(String streetAddressDos) {
-        logger.debug("Ingresando nombre de calle: " + streetAddressDos);
         sendText(streetAddressDosField, streetAddressDos);
     }
 
     public void enterCity(String city) {
-        logger.debug("Ingresando ciudad: " + city);
         sendText(cityField, city);
     }
 
     public void enterState(String state) {
-        logger.debug("Ingresando estado: " + state);
         sendText(stateField, state);
     }
 
     public void enterPostalCode(String postalCode) {
-        logger.debug("Ingresando código postal: " + postalCode);
         sendText(postalCodeField, postalCode);
     }
 
     public void enterCountry(String country) {
-        logger.debug("Ingresando país: " + country);
         sendText(countryField, country);
     }
 

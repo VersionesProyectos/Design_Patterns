@@ -16,7 +16,7 @@ public class SwitchWindowTest extends BaseTest {
 
     @BeforeMethod
     public void setUpPage() {
-        switchWindowPage = new SwitchWindowPage(driver);
+        switchWindowPage = new SwitchWindowPage();
     }
 
     @Test(groups = {"regression", "navigation"},

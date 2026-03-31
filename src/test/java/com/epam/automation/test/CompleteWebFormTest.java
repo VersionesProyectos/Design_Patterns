@@ -18,7 +18,7 @@ public class CompleteWebFormTest extends BaseTest {
     @BeforeMethod(alwaysRun = true)
     public void setUpPage() {
         logger.debug("Inicializando Page Objects para CompleteWebFormTest");
-        completeWebFormPage = new CompleteWebFormPage(driver);
+        completeWebFormPage = new CompleteWebFormPage();
     }
 
     @Test(groups = {"smoke", "regression"},
@@ -27,12 +27,13 @@ public class CompleteWebFormTest extends BaseTest {
     public void testCompleteWebForm() {
         logger.info("Ejecutando Test de Registro Completo");
 
-        User testUser = new User(
-                "Gerardo",
-                "QA",
-                "Automation Engineer",
-                "03/16/2026"
-        );
+        User testUser = new User.UserBuilder()
+                .firstName("Gerardo")
+                .lastName("QA")
+                .jobTitle("Automation Engineer")
+                .date("03/16/2026")
+                .build();
+
 
         completeWebFormPage.clickLinkForm();
         completeWebFormPage.fillForm(testUser);

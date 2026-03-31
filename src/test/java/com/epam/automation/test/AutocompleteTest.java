@@ -15,7 +15,7 @@ public class AutocompleteTest extends BaseTest {
 
     @BeforeMethod
     public void setUpPage() {
-        autocompletePage = new AutocompletePage(driver);
+        autocompletePage = new AutocompletePage();
     }
 
     @Test(groups = {"regression"},
