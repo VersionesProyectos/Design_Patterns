@@ -6,19 +6,22 @@ import java.lang.ThreadLocal;
 
 public class DriverManager {
 
-    private static DriverManager instance;
+    private static volatile DriverManager instance;
     private static ThreadLocal<WebDriver> threadLocalDriver = new ThreadLocal<>();
 
     private DriverManager() {
     }
 
-    public static synchronized DriverManager getInstance() {
+    public static DriverManager getInstance() {
         if (instance == null) {
-            instance = new DriverManager();
+            synchronized (DriverManager.class) {
+                if (instance == null) {
+                    instance = new DriverManager();
+                }
+            }
         }
         return instance;
     }
-
     public WebDriver getDriver(String browser) {
         if (threadLocalDriver.get() == null) {
             WebDriver driver = DriverFactory.createDriver(browser);
