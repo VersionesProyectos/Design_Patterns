@@ -52,4 +52,15 @@ public class TestUtils {
             logger.error("Error al adjuntar a Allure: " + e.getMessage());
         }
     }
+
+    public static void attachScreenshotToScenario(WebDriver driver, io.cucumber.java.Scenario scenario, String name) {
+        if (driver == null || scenario == null) return;
+        try {
+            byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+            scenario.attach(screenshot, "image/png", name);
+        } catch (Exception e) {
+            logger.error("Error adjuntando screenshot al Scenario: {}", e.getMessage(), e);
+        }
+    }
+
 }

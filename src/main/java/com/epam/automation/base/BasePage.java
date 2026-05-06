@@ -21,7 +21,7 @@ public abstract class BasePage {
 
     public BasePage() {
 
-        this.driver = DriverManager.getInstance().getDriver(System.getProperty("browser", "chrome"));
+        this.driver = DriverManager.getInstance().getDriver();
 
         int timeout = Integer.parseInt(System.getProperty("timeout", "10"));
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));

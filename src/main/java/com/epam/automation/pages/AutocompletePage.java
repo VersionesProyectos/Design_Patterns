@@ -4,9 +4,15 @@ import com.epam.automation.base.BasePage;
 import com.epam.automation.model.Address;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
 public class AutocompletePage extends BasePage {
 
     private static final Logger logger = LogManager.getLogger(AutocompletePage.class);
@@ -14,13 +20,16 @@ public class AutocompletePage extends BasePage {
     @FindBy(css = ".btn.btn-lg")
     private WebElement autocompleteLink;
 
+    @FindBy(className = "dismissButton")
+    private WebElement okButton;
+
     @FindBy(id = "autocomplete")
     private WebElement addressField;
 
     @FindBy(id = "street_number")
     private WebElement streetAddressField;
 
-    @FindBy(id = "route" )
+    @FindBy(id = "route")
     private WebElement streetAddressDosField;
 
     @FindBy(id = "locality")
@@ -44,10 +53,11 @@ public class AutocompletePage extends BasePage {
         waitForElementToBeVisible(addressField);
     }
 
+
     public void fillAddressDetails(Address address) {
         refreshPageElements();
-
         enterAddress(address.getFullAddress());
+        dismissGoogleAlert();
 
         enterStreetAddress(address.getStreet());
         enterStreetAddressDos(address.getStreet2());
@@ -58,11 +68,33 @@ public class AutocompletePage extends BasePage {
 
     }
 
+    public void dismissGoogleAlert() {
+        try {
+            // Usamos una espera fluida para que el test no se detenga innecesariamente
+            WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(2));
+            WebElement button = shortWait.until(ExpectedConditions.elementToBeClickable(okButton));
+            button.click();
+            logger.info("Modal de Google Maps cerrado.");
+        } catch (Exception e) {
+            logger.warn("El modal de Google no apareció, continuando con el flujo.");
+        }
+    }
+
     public void enterAddress(String address) {
         scrollToElement(addressField);
         sendText(addressField, address);
     }
-
+    public void closeGoogleErrorIfPresent() {
+        try {
+            // El botón de OK suele tener la clase 'dismissButton'
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+            WebElement okButton = wait.until(ExpectedConditions.elementToBeClickable(By.className("dismissButton")));
+            okButton.click();
+            System.out.println("Modal de Google Maps cerrado.");
+        } catch (Exception e) {
+            // Si no aparece el modal, el test continúa normalmente
+        }
+    }
     public void enterStreetAddress(String streetAddress) {
         sendText(streetAddressField, streetAddress);
     }
@@ -74,6 +106,7 @@ public class AutocompletePage extends BasePage {
     public void enterCity(String city) {
         sendText(cityField, city);
     }
+
 
     public void enterState(String state) {
         sendText(stateField, state);
@@ -87,7 +120,15 @@ public class AutocompletePage extends BasePage {
         sendText(countryField, country);
     }
 
-    public String getCityValue() { return cityField.getAttribute("value"); }
-    public String getStateValue() { return stateField.getAttribute("value"); }
-    public String getCountryValue() { return countryField.getAttribute("value"); }
+    public String getCityValue() {
+        return cityField.getAttribute("value");
+    }
+
+    public String getStateValue() {
+        return stateField.getAttribute("value");
+    }
+
+    public String getCountryValue() {
+        return countryField.getAttribute("value");
+    }
 }

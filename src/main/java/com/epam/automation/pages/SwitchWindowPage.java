@@ -45,28 +45,44 @@ public class SwitchWindowPage extends BasePage {
         for (String handle : driver.getWindowHandles()) {
             if (!handle.equals(mainWindowHandle)) {
                 driver.switchTo().window(handle);
+                logger.info("Switching to new tab: " + handle);
+                break;
             }
         }
     }
 
     public void closeAndReturnToMain() {
-        driver.close();
+        if (driver.getWindowHandles().size() > 1) {
+            driver.close();
+            logger.info("New tab closed.");
+        }
         driver.switchTo().window(mainWindowHandle);
+        wait.until(ExpectedConditions.elementToBeClickable(openNewTabButton));
     }
 
     public void handleAlert() {
         click(openAlertButton);
-
-        wait.until(ExpectedConditions.alertIsPresent());
-        Alert alert = driver.switchTo().alert();
+        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        logger.info("Alert text: " + alert.getText());
         alert.accept();
+
+        driver.switchTo().window(mainWindowHandle);
     }
 
     public String getPageTitle() {
-        return mainTitle.getText();
+
+        driver.switchTo().window(mainWindowHandle);
+
+        if (!driver.getCurrentUrl().equals(System.getProperty("url"))) {
+            click(logoFormy);
+        }
+
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".display-3"))).getText();
     }
 
     public void clickLogoFormy() {
         click(logoFormy);
     }
+
+
 }

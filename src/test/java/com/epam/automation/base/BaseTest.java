@@ -25,7 +25,7 @@ public abstract class BaseTest {
         int timeout = Integer.parseInt(System.getProperty("timeout", "10"));
         logger.info("Iniciando setup del test en: " + browser);
 
-        driver = DriverManager.getInstance().getDriver(browser);
+        driver = DriverManager.getInstance().getDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeout));
         driver.get(url);

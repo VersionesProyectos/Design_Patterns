@@ -2,6 +2,7 @@ package com.epam.automation.driver;
 
 
 import org.openqa.selenium.WebDriver;
+
 import java.lang.ThreadLocal;
 
 public class DriverManager {
@@ -22,8 +23,17 @@ public class DriverManager {
         }
         return instance;
     }
-    public WebDriver getDriver(String browser) {
+//    public WebDriver getDriver(String browser) {
+//        if (threadLocalDriver.get() == null) {
+//            WebDriver driver = DriverFactory.createDriver(browser);
+//            threadLocalDriver.set(driver);
+//        }
+//        return threadLocalDriver.get();
+//    }
+
+    public WebDriver getDriver() {
         if (threadLocalDriver.get() == null) {
+            String browser = System.getProperty("browser", "chrome");
             WebDriver driver = DriverFactory.createDriver(browser);
             threadLocalDriver.set(driver);
         }
