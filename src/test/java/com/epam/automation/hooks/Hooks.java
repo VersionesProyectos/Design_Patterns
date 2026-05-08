@@ -12,7 +12,7 @@ public class Hooks {
 
     @Before
     public void beforeScenario(Scenario scenario) {
-        // 1. Obtener parámetros con valores por defecto seguros
+
         String browser = System.getProperty("browser", "chrome");
         String url = System.getProperty("url", "https://formy-project.herokuapp.com/");
         int timeout = Integer.parseInt(System.getProperty("timeout", "10"));
@@ -20,24 +20,21 @@ public class Hooks {
         WebDriver driver = DriverManager.getInstance().getDriver();
         driver.manage().window().maximize();
 
-        // 2. Aplicar esperas
+
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeout));
         driver.get(url);
 
-        // 3. Esperar a que la página esté lista
         new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(d -> ((JavascriptExecutor) d).executeScript("return document.readyState").equals("complete"));
+                .until(d -> ((JavascriptExecutor) d)
+                        .executeScript("return document.readyState").equals("complete"));
     }
 
     @AfterStep
     public void afterStep(Scenario scenario) {
-        // Si el paso falla, adjuntamos evidencia al reporte de Cucumber/Allure
+
         if (scenario.isFailed()) {
             WebDriver driver = DriverManager.getInstance().getDriver();
-            // Asegúrate de que este método use scenario.attach(bytes, "image/png", name)
             TestUtils.saveScreenshotToAllure(driver);
-
-            // Opcional: Adjuntar directamente al objeto scenario de Cucumber
             final byte[] screenshot = ((org.openqa.selenium.TakesScreenshot) driver).getScreenshotAs(org.openqa.selenium.OutputType.BYTES);
             scenario.attach(screenshot, "image/png", "Evidencia de fallo en el paso");
         }
@@ -45,7 +42,6 @@ public class Hooks {
 
     @After
     public void afterScenario() {
-        // Siempre cerrar el driver al final para liberar memoria
         DriverManager.getInstance().quitDriver();
     }
 }

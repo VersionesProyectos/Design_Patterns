@@ -5,23 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90b9f68e-f8d6-464a-a068-93a2844e5d08" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/epam/automation/hooks/Hooks.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/epam/automation/runners/RunCucumberTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/epam/automation/steps/AutocompleteSteps.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/epam/automation/steps/CompleteFormSteps.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/epam/automation/steps/SwitchWindowSteps.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/features/autocomplete.feature" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/features/complete_form.feature" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/features/switch_window.feature" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/suites/testng_cucumber.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/epam/automation/base/BasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epam/automation/base/BasePage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/epam/automation/driver/DriverManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epam/automation/driver/DriverManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/epam/automation/pages/AutocompletePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epam/automation/pages/AutocompletePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/epam/automation/pages/SwitchWindowPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epam/automation/pages/SwitchWindowPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/epam/automation/utils/TestUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epam/automation/utils/TestUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/epam/automation/base/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/epam/automation/base/BaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/epam/automation/hooks/Hooks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/epam/automation/hooks/Hooks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/epam/automation/runners/RunCucumberTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/epam/automation/runners/RunCucumberTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/epam/automation/steps/AutocompleteSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/epam/automation/steps/AutocompleteSteps.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/features/autocomplete.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/features/autocomplete.feature" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +61,19 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Specialization\Design_Patterns_TA\src\test\resources\suites" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="Cucumber" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="Cucumber" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

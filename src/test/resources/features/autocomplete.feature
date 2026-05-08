@@ -15,6 +15,7 @@ Feature: Autocomplete address
     And the state should be "<state>"
     And the country should be "<country>"
 
+
     Examples:
       | fullAddress                                   | city          | state      | country       |
       | 1600 Amphitheatre Parkway, Mountain View, CA   | Mountain View | California | United States |

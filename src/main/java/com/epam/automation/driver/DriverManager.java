@@ -23,13 +23,6 @@ public class DriverManager {
         }
         return instance;
     }
-//    public WebDriver getDriver(String browser) {
-//        if (threadLocalDriver.get() == null) {
-//            WebDriver driver = DriverFactory.createDriver(browser);
-//            threadLocalDriver.set(driver);
-//        }
-//        return threadLocalDriver.get();
-//    }
 
     public WebDriver getDriver() {
         if (threadLocalDriver.get() == null) {

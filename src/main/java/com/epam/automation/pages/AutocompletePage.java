@@ -70,7 +70,6 @@ public class AutocompletePage extends BasePage {
 
     public void dismissGoogleAlert() {
         try {
-            // Usamos una espera fluida para que el test no se detenga innecesariamente
             WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(2));
             WebElement button = shortWait.until(ExpectedConditions.elementToBeClickable(okButton));
             button.click();
@@ -86,13 +85,12 @@ public class AutocompletePage extends BasePage {
     }
     public void closeGoogleErrorIfPresent() {
         try {
-            // El botón de OK suele tener la clase 'dismissButton'
+
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
             WebElement okButton = wait.until(ExpectedConditions.elementToBeClickable(By.className("dismissButton")));
             okButton.click();
             System.out.println("Modal de Google Maps cerrado.");
         } catch (Exception e) {
-            // Si no aparece el modal, el test continúa normalmente
         }
     }
     public void enterStreetAddress(String streetAddress) {

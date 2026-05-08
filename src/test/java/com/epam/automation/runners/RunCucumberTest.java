@@ -9,7 +9,8 @@ import org.testng.annotations.DataProvider;
         features = "src/test/resources/features",
         glue = {"com.epam.automation.steps", "com.epam.automation.hooks"},
         plugin = {"pretty", "html:target/cucumber-reports.html"},
-        tags = "@regression or @smoke"
+        tags = "@regression or @s" +
+                "moke"
 )
 public class RunCucumberTest extends AbstractTestNGCucumberTests {
     @Override
